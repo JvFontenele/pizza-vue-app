@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" class="body">
     <v-navigation-drawer
       dark
       color="orange lighten-1"
@@ -8,17 +8,9 @@
       app
     >
       <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar>
-            <v-img
-              src="https://randomuser.me/api/portraits/women/85.jpg"
-            ></v-img>
-          </v-list-item-avatar>
-        </v-list-item>
-
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title class="text-h6">
+            <v-list-item-title class="text-h5">
               Sandra Adams
             </v-list-item-title>
             <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
@@ -29,49 +21,59 @@
       <v-divider></v-divider>
 
       <v-list nav dense>
-        <v-list-item link>
+        <v-list-item link @click="page = 1">
           <v-list-item-icon>
-            <v-icon>mdi-folder</v-icon>
+            <v-icon>mdi-pizza</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>My Files</v-list-item-title>
+          <v-list-item-title class="text-h6">Pedidos</v-list-item-title>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link @click="page = 2">
           <v-list-item-icon>
-            <v-icon>mdi-account-multiple</v-icon>
+            <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Shared with me</v-list-item-title>
+          <v-list-item-title class="text-h6">Funcionarios</v-list-item-title>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link @click="page = 3">
           <v-list-item-icon>
-            <v-icon>mdi-star</v-icon>
+            <v-icon>mdi-ballot-recount-outline</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Starred</v-list-item-title>
+          <v-list-item-title class="text-h6">Estoque</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
-    <hello-world />
+    <pedidos-home v-if="page == 1" />
+    <FuncionariosPage v-if="page == 2" />
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import PedidosHome from "../components/PedidosHome.vue";
+import FuncionariosPage from "../components/FuncionariosPage.vue";
 
 export default {
   data() {
     return {
       page: 1,
       drawer: true,
-      items: [
-        { title: "Home", icon: "mdi-home-city" },
-        { title: "My Account", icon: "mdi-account" },
-        { title: "Users", icon: "mdi-account-group-outline" },
-      ],
+
       mini: true,
     };
   },
   components: {
-    HelloWorld,
+    PedidosHome,
+
+    FuncionariosPage,
   },
 };
 </script>
+<style scoped>
+.body {
+  width: 100%;
+  height: 100%;
+  background: url(../../public/fundo.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
