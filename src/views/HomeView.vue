@@ -69,8 +69,6 @@ export default {
 </script>
 <style scoped>
 .body {
-  width: 100%;
-  height: 100%;
   background: url(../../public/fundo.svg);
   background-position: center;
   background-repeat: no-repeat;
